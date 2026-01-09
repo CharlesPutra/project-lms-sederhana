@@ -3,6 +3,8 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KelasUserController;
+use App\Http\Controllers\MapelController;
+use App\Http\Controllers\MateriController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +37,8 @@ Route::middleware(['auth', 'role:admin'])
         Route::resource('/kelas', KelasController::class);
         //route kelas user atau siswa
         Route::resource('/kelas-user',KelasUserController::class)->only('index','create','store','destroy');
+        //route mapel
+        Route::resource('/mapel', MapelController::class);
         //ini logout admin
         Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
             ->name('logout');
@@ -45,6 +49,8 @@ Route::middleware(['auth', 'role:guru'])
     ->name('guru.')
     ->group(function () {
         Route::get('/dashboard', fn() => view('Guru.Dashboard'))->name('dashboard');
+        //route materi
+        Route::resource('/materi', MateriController::class);
     });
 
 Route::middleware(['auth', 'role:siswa'])
