@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kelas;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class KelasUserController extends Controller
@@ -57,5 +58,16 @@ class KelasUserController extends Controller
         DB::table('kelassiswas')->where('id', $id)->delete();
 
         return back()->with('success', 'Data berhasil dihapus');
+    }
+
+    //kelas saya user
+    public function kelassaya()
+    {
+        $user = Auth::user();
+
+        // Ambil kelas yang diikuti siswa
+        $kelas = $user->kelas; // dari relasi belongsToMany
+
+        return view('Siswa.Kelas.saya', compact('kelas'));
     }
 }

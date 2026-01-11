@@ -29,13 +29,13 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{route('siswa.siswa.kelas')}}">
                             Kelas Saya
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{route('siswa.materi.siswa')}}">
                             Materi
                         </a>
                     </li>

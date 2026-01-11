@@ -47,6 +47,11 @@ class User extends Authenticatable
     //relasi kelasi
     public function kelas()
     {
-        return $this->belongsToMany(Kelas::class, 'kelas_user');
+        return $this->belongsToMany(
+            Kelas::class,
+            'kelassiswas',   // nama tabel pivot
+            'user_id',       // foreign key di kelassiswas
+            'kelas_id'       // foreign key di kelassiswas
+        );
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\KelasUserController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\MateriController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SiswaMateriController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,6 +60,11 @@ Route::middleware(['auth', 'role:siswa'])
     ->group(function () {
         //ini route dashboard siswa
         Route::get('/dashboard', fn() => view('Siswa.Dashboard'))->name('dashboard');
+        //route kelas saya
+        Route::get('/kelas-saya', [KelasUserController::class, 'kelassaya'])->name('siswa.kelas');
+        Route::get('/materi-siswa', [SiswaMateriController::class , 'index'])->name('materi.siswa');
+        Route::get('/materi-siswa/{id}', [SiswaMateriController::class , 'show'])->name('materi.siswa.show');
+        Route::get('/materi-siswa-dowanload/{id}', [SiswaMateriController::class , 'unduh'])->name('materi.siswa.download');
         //ini logout siswa
         Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
             ->name('logout');
