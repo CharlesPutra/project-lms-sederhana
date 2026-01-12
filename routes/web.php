@@ -7,6 +7,7 @@ use App\Http\Controllers\MapelController;
 use App\Http\Controllers\MateriController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiswaMateriController;
+use App\Http\Controllers\TugasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,6 +53,8 @@ Route::middleware(['auth', 'role:guru'])
         Route::get('/dashboard', fn() => view('Guru.Dashboard'))->name('dashboard');
         //route materi
         Route::resource('/materi', MateriController::class);
+        //route tugas
+        Route::resource('/tugas', TugasController::class);
     });
 
 Route::middleware(['auth', 'role:siswa'])

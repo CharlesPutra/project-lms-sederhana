@@ -52,7 +52,7 @@
 
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('guru.tugas.*') ? 'active' : '' }}"
-                            href="">
+                            href="{{route('guru.tugas.index')}}">
                             Tugas
                         </a>
                     </li>
