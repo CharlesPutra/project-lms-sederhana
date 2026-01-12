@@ -54,4 +54,9 @@ class User extends Authenticatable
             'kelas_id'       // foreign key di kelassiswas
         );
     }
+
+    public function pengumpulanTugas()
+    {
+        return $this->hasMany(PengumpulanTugas::class, 'siswa_id');
+    }
 }

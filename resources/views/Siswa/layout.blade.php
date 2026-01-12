@@ -41,7 +41,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{route('siswa.tugas.index')}}">
                             Tugas
                         </a>
                     </li>

@@ -7,6 +7,7 @@ use App\Http\Controllers\MapelController;
 use App\Http\Controllers\MateriController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiswaMateriController;
+use App\Http\Controllers\SiswaTugasController;
 use App\Http\Controllers\TugasController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,7 +39,7 @@ Route::middleware(['auth', 'role:admin'])
         //route kelas
         Route::resource('/kelas', KelasController::class);
         //route kelas user atau siswa
-        Route::resource('/kelas-user',KelasUserController::class)->only('index','create','store','destroy');
+        Route::resource('/kelas-user', KelasUserController::class)->only('index', 'create', 'store', 'destroy');
         //route mapel
         Route::resource('/mapel', MapelController::class);
         //ini logout admin
@@ -65,9 +66,15 @@ Route::middleware(['auth', 'role:siswa'])
         Route::get('/dashboard', fn() => view('Siswa.Dashboard'))->name('dashboard');
         //route kelas saya
         Route::get('/kelas-saya', [KelasUserController::class, 'kelassaya'])->name('siswa.kelas');
-        Route::get('/materi-siswa', [SiswaMateriController::class , 'index'])->name('materi.siswa');
-        Route::get('/materi-siswa/{id}', [SiswaMateriController::class , 'show'])->name('materi.siswa.show');
-        Route::get('/materi-siswa-dowanload/{id}', [SiswaMateriController::class , 'unduh'])->name('materi.siswa.download');
+        Route::get('/materi-siswa', [SiswaMateriController::class, 'index'])->name('materi.siswa');
+        Route::get('/materi-siswa/{id}', [SiswaMateriController::class, 'show'])->name('materi.siswa.show');
+        Route::get('/materi-siswa-dowanload/{id}', [SiswaMateriController::class, 'unduh'])->name('materi.siswa.download');
+        //route tugas
+        Route::get('tugas', [SiswaTugasController::class, 'index'])->name('tugas.index');
+        Route::get('tugas/{id}', [SiswaTugasController::class, 'show'])->name('tugas.show');
+        Route::post('tugas/{id}/kumpul', [SiswaTugasController::class, 'kumpul'])->name('tugas.kumpul');
+        Route::get('tugas/{id}/download', [SiswaTugasController::class, 'download'])->name('tugas.download');
+
         //ini logout siswa
         Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
             ->name('logout');
