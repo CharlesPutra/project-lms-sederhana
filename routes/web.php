@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\GuruTugasController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KelasUserController;
 use App\Http\Controllers\MapelController;
@@ -56,6 +57,14 @@ Route::middleware(['auth', 'role:guru'])
         Route::resource('/materi', MateriController::class);
         //route tugas
         Route::resource('/tugas', TugasController::class);
+        Route::get('tugas/{id}/pengumpulan', [GuruTugasController::class, 'pengumpulan'])
+            ->name('tugas.pengumpulan');
+
+        Route::get('pengumpulan/{id}/nilai', [GuruTugasController::class, 'nilai'])
+            ->name('pengumpulan.nilai');
+
+        Route::post('pengumpulan/{id}/nilai', [GuruTugasController::class, 'simpanNilai'])
+            ->name('pengumpulan.nilai.simpan');
     });
 
 Route::middleware(['auth', 'role:siswa'])

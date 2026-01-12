@@ -15,7 +15,7 @@
 
         <div class="card">
             <div class="card-body table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered align-middle">
                     <thead class="table-light">
                         <tr>
                             <th>No</th>
@@ -42,17 +42,29 @@
                                         <span class="badge bg-secondary">Tidak Ada</span>
                                     @endif
                                 </td>
-                                <td>
-                                    <a href="{{ asset('storage/' . $item->file) }}" target="_blank"
-                                        class="btn btn-secondary btn-sm">
-                                        Lihat
+                                <td class="d-flex gap-1 flex-wrap">
+
+                                    {{-- LIHAT FILE --}}
+                                    @if ($item->file)
+                                        <a href="{{ asset('storage/' . $item->file) }}" target="_blank"
+                                            class="btn btn-secondary btn-sm">
+                                            Lihat File
+                                        </a>
+                                    @endif
+
+                                    {{-- PENGUMPULAN / NILAI --}}
+                                    <a href="{{ route('guru.tugas.pengumpulan', $item->id) }}" class="btn btn-info btn-sm">
+                                        Pengumpulan
                                     </a>
+
+                                    {{-- EDIT --}}
                                     <a href="{{ route('guru.tugas.edit', $item->id) }}" class="btn btn-warning btn-sm">
                                         Edit
                                     </a>
 
+                                    {{-- HAPUS --}}
                                     <form action="{{ route('guru.tugas.destroy', $item->id) }}" method="POST"
-                                        class="d-inline" onsubmit="return confirm('Yakin hapus tugas?')">
+                                        onsubmit="return confirm('Yakin hapus tugas?')">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger btn-sm">Hapus</button>
@@ -61,7 +73,9 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="text-center">Belum ada tugas</td>
+                                <td colspan="6" class="text-center">
+                                    Belum ada tugas
+                                </td>
                             </tr>
                         @endforelse
                     </tbody>
