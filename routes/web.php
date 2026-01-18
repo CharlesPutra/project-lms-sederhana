@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\GuruController;
 use App\Http\Controllers\GuruTugasController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KelasUserController;
@@ -43,6 +44,8 @@ Route::middleware(['auth', 'role:admin'])
         Route::resource('/kelas-user', KelasUserController::class)->only('index', 'create', 'store', 'destroy');
         //route mapel
         Route::resource('/mapel', MapelController::class);
+        //route akun guru
+        Route::resource('/akun-guru', GuruController::class);
         //ini logout admin
         Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
             ->name('logout');

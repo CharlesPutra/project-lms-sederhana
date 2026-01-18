@@ -37,8 +37,8 @@
                         </a>
                         <ul class="dropdown-menu">
                             {{-- <li><a class="dropdown-item" href="#">Admin</a></li> --}}
-                            <li><a class="dropdown-item" href="#">Guru</a></li>
-                            <li><a class="dropdown-item" href="#">Siswa</a></li>
+                            <li><a class="dropdown-item" href="{{route('admin.akun-guru.index')}}">Guru</a></li>
+                            {{-- <li><a class="dropdown-item" href="#">Siswa</a></li> --}}
                         </ul>
                     </li>
 
